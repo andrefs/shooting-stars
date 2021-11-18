@@ -1,0 +1,64 @@
+version: "3.8"
+
+services:
+  mongo:
+    image: mongo
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: ./data/db
+        target: /data/db
+    ports:
+      - "27018:27017"
+    networks:
+      - database
+  api:
+    build:
+      context: ./shooting-stars-api/
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - mongo
+    networks:
+      - front
+      - back
+      - database
+    environment:
+      MONGODB_HOST: mongo
+      NODE_ENV: 'production'
+      API_PORT: 15111
+    volumes:
+      - type: bind
+        source: ./data/export
+        target: /data/export
+      - type: bind
+        source: ./data/items
+        target: /data/items
+    ports:
+      - "15111:15111"
+#  game:
+#    build:
+#      context: ./shooting-stars-game/
+#      dockerfile: Dockerfile
+#    restart: unless-stopped
+#    depends_on:
+#      - api
+#    networks:
+#      - front
+#    ports:
+#      - "3001:3001"
+#  stats:
+#    build:
+#      context: ./shooting-stars-stats/
+#      dockerfile: Dockerfile
+#    restart: unless-stopped
+#    depends_on:
+#      - api
+#    networks:
+#      - back
+#    ports:
+#      - "3002:3002"
+networks:
+  database:
+  front:
+  back:
