@@ -36,17 +36,17 @@ services:
         target: /data/items
     ports:
       - "15111:15111"
-#  game:
-#    build:
-#      context: ./shooting-stars-game/
-#      dockerfile: Dockerfile
-#    restart: unless-stopped
-#    depends_on:
-#      - api
-#    networks:
-#      - front
-#    ports:
-#      - "3001:3001"
+  game:
+    build:
+      context: ./shooting-stars-game/
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - api
+    networks:
+      - front
+    ports:
+      - "3001:80"
 #  stats:
 #    build:
 #      context: ./shooting-stars-stats/
