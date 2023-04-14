@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.9"
 
 services:
   mongo:
@@ -9,7 +9,7 @@ services:
         source: ./data/db
         target: /data/db
     ports:
-      - "27018:27017"
+      - "27019:27017"
     networks:
       - database
   api:
@@ -25,7 +25,7 @@ services:
       - database
     environment:
       MONGODB_HOST: mongo
-      NODE_ENV: 'production'
+      NODE_ENV: "production"
       API_PORT: 15111
     volumes:
       - type: bind
