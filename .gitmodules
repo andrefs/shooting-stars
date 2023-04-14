@@ -7,3 +7,6 @@
 [submodule "shooting-stars-stats"]
 	path = shooting-stars-stats
 	url = git@github.com:andrefs/shooting-stars-stats.git
+[submodule "shooting-stars-images"]
+	path = shooting-stars-images
+	url = git@github.com:andrefs/shooting-stars-images.git
