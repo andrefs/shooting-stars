@@ -47,17 +47,18 @@ services:
       - front
     ports:
       - "3001:80"
-#  stats:
-#    build:
-#      context: ./shooting-stars-stats/
-#      dockerfile: Dockerfile
-#    restart: unless-stopped
-#    depends_on:
-#      - api
-#    networks:
-#      - back
-#    ports:
-#      - "3002:3002"
+  stats:
+    build:
+      context: ./shooting-stars-stats/
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - api
+    networks:
+      - back
+      - front
+    ports:
+      - "3002:3002"
 networks:
   database:
   front:
