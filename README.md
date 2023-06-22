@@ -9,12 +9,9 @@ git clone https://github.com/andrefs/shooting-stars.git
 Then you need to init the Git submodules to pull in the game API, frontend and stats backoffice from their own repositories.
 
 ```
+
 cd shooting-stars
-git submodule init
-```
-In each of the subfolders `shooting-stars-api`, `shooting-stars-game` and `shooting-stars-stats` run
-```
-git submodule update
+git submodule update --init --recursive
 ```
 
 Then run
