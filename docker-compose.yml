@@ -57,7 +57,7 @@ services:
       - "3001:80"
   stats:
     build:
-      context: "https://github.com/andrefs/shooting-stars-stats.git#134b395459046ba36ea1385a71e34025142125aa"
+      context: "https://github.com/andrefs/shooting-stars-stats.git#2caecbea567dc778d213c58c489d17bd0f21cf3e"
       dockerfile: Dockerfile
     restart: unless-stopped
     depends_on:
