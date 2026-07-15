@@ -39,6 +39,9 @@ services:
       - type: bind
         source: ./data/items
         target: /data/items
+      - type: bind
+        source: ./data/items/images
+        target: /usr/src/ss-api/images
     ports:
       - "15111:15111"
   game:
