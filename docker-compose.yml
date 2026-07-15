@@ -18,7 +18,7 @@ services:
       - database
   api:
     build:
-      context: "https://github.com/andrefs/shooting-stars-api.git#fa3b77889d224134b48cc307e6ca4fd06a8fbb57"
+      context: "https://github.com/andrefs/shooting-stars-api.git#9c82a10b61fd86e90bf9bc9932d96892bf2c7f39"
       dockerfile: Dockerfile
     restart: unless-stopped
     depends_on:
