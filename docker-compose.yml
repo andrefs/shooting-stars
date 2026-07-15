@@ -18,7 +18,7 @@ services:
       - database
   api:
     build:
-      context: "https://github.com/andrefs/shooting-stars-api.git#21e20b35a8c8c912d35cd1a0ebcf7f237695c968"
+      context: "https://github.com/andrefs/shooting-stars-api.git#fa3b77889d224134b48cc307e6ca4fd06a8fbb57"
       dockerfile: Dockerfile
     restart: unless-stopped
     depends_on:
@@ -46,7 +46,7 @@ services:
       - "15111:15111"
   game:
     build:
-      context: "https://github.com/andrefs/shooting-stars-game.git#2e86c3cbdbee943eda539203fda98f266fba7ca0"
+      context: "https://github.com/andrefs/shooting-stars-game.git#d1e4fbfe14b84b50932166ef803da93ee64303b"
       dockerfile: Dockerfile
     restart: unless-stopped
     depends_on:
@@ -57,7 +57,7 @@ services:
       - "3001:80"
   stats:
     build:
-      context: "https://github.com/andrefs/shooting-stars-stats.git#33d0cda6e041c34666feedce2058c5bdeda4b301"
+      context: "https://github.com/andrefs/shooting-stars-stats.git#134b395459046ba36ea1385a71e34025142125aa"
       dockerfile: Dockerfile
     restart: unless-stopped
     depends_on:
