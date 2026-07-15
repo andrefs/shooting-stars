@@ -3,9 +3,7 @@ services:
     image: mongo:4.4
     restart: unless-stopped
     volumes:
-      - type: bind
-        source: ./data/db
-        target: /data/db
+      - mongo_data:/data/db
     ports:
       - "27019:27017"
     healthcheck:
@@ -33,15 +31,9 @@ services:
       NODE_ENV: "production"
       API_PORT: 15111
     volumes:
-      - type: bind
-        source: ./data/export
-        target: /data/export
-      - type: bind
-        source: ./data/items
-        target: /data/items
-      - type: bind
-        source: ./data/items/images
-        target: /usr/src/ss-api/images
+      - api_export:/data/export
+      - api_items:/data/items
+      - api_images:/usr/src/ss-api/images
     ports:
       - "15111:15111"
   game:
@@ -67,6 +59,11 @@ services:
       - front
     ports:
       - "3002:3002"
+volumes:
+  mongo_data:
+  api_export:
+  api_items:
+  api_images:
 networks:
   database:
   front:
