@@ -1,0 +1,73 @@
+services:
+  mongo:
+    image: mongo:4.4
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: ./data/db
+        target: /data/db
+    ports:
+      - "27019:27017"
+    healthcheck:
+      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    networks:
+      - database
+  api:
+    build:
+      context: "https://github.com/andrefs/shooting-stars-api.git#21e20b35a8c8c912d35cd1a0ebcf7f237695c968"
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      mongo:
+        condition: service_healthy
+    networks:
+      - front
+      - back
+      - database
+    environment:
+      MONGODB_HOST: mongo
+      NODE_ENV: "production"
+      API_PORT: 15111
+    volumes:
+      - type: bind
+        source: ./data/export
+        target: /data/export
+      - type: bind
+        source: ./data/items
+        target: /data/items
+      - type: bind
+        source: ./data/items/images
+        target: /usr/src/ss-api/images
+    ports:
+      - "15111:15111"
+  game:
+    build:
+      context: "https://github.com/andrefs/shooting-stars-game.git#c306dbd48cd198b14ea0abcfedfce572606db31e"
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - api
+    networks:
+      - front
+    ports:
+      - "3001:80"
+  stats:
+    build:
+      context: "https://github.com/andrefs/shooting-stars-stats.git#33d0cda6e041c34666feedce2058c5bdeda4b301"
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - api
+    networks:
+      - back
+      - front
+    ports:
+      - "3002:3002"
+networks:
+  database:
+  front:
+  back:
