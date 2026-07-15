@@ -1,8 +1,6 @@
-version: "3.9"
-
 services:
   mongo:
-    image: mongo
+    image: mongo:4.4
     restart: unless-stopped
     volumes:
       - type: bind
@@ -10,6 +8,12 @@ services:
         target: /data/db
     ports:
       - "27019:27017"
+    healthcheck:
+      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
     networks:
       - database
   api:
@@ -18,7 +22,8 @@ services:
       dockerfile: Dockerfile
     restart: unless-stopped
     depends_on:
-      - mongo
+      mongo:
+        condition: service_healthy
     networks:
       - front
       - back
