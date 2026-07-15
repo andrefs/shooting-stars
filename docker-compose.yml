@@ -46,7 +46,7 @@ services:
       - "15111:15111"
   game:
     build:
-      context: "https://github.com/andrefs/shooting-stars-game.git#c306dbd48cd198b14ea0abcfedfce572606db31e"
+      context: "https://github.com/andrefs/shooting-stars-game.git#2e86c3cbdbee943eda539203fda98f266fba7ca0"
       dockerfile: Dockerfile
     restart: unless-stopped
     depends_on:
