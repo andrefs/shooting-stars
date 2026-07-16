@@ -18,6 +18,7 @@ services:
     build:
       context: "https://github.com/andrefs/shooting-stars-api.git#d960a4155f75e9d6a86f464a0c5ba2f515382f4a"
       dockerfile: Dockerfile
+    pull_policy: build
     restart: unless-stopped
     depends_on:
       mongo:
@@ -40,6 +41,7 @@ services:
     build:
       context: "https://github.com/andrefs/shooting-stars-game.git#5c33a02"
       dockerfile: Dockerfile
+    pull_policy: build
     restart: unless-stopped
     depends_on:
       - api
@@ -51,6 +53,7 @@ services:
     build:
       context: "https://github.com/andrefs/shooting-stars-stats.git#7f30208c0a8828a4a302ca81984b588eda87b2c5"
       dockerfile: Dockerfile
+    pull_policy: build
     restart: unless-stopped
     depends_on:
       - api
