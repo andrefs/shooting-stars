@@ -39,7 +39,7 @@ services:
       - "15111:15111"
   game:
     build:
-      context: "https://github.com/andrefs/shooting-stars-game.git#5c33a02"
+      context: "https://github.com/andrefs/shooting-stars-game.git#docker"
       dockerfile: Dockerfile
     pull_policy: build
     restart: unless-stopped
